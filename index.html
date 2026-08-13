@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ILS212 FOR COVENANT GENERALS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stackroom" aria-hidden="true">
+  <div class="stackroom__glow"></div>
+</div>
+
+<main class="app">
+
+  <!-- ============ SCREEN 1 : SETUP / CATALOG DRAWER ============ -->
+  <section id="screen-setup" class="screen screen--setup" data-screen>
+    <header class="masthead">
+      <p class="masthead__eyebrow">ILS212 FOR COVENANT GENERALS</p>
+      <h1 class="masthead__title">Information Literacy<br>Skills — Practice Deck</h1>
+      <p class="masthead__sub">Drawn from Modules 1–5 — needs &amp; access, libraries &amp; user education, search strategy, access tools, and ethics — plus a Past Questions set from the FUTO ILS 212 CAT paper.</p>
+    </header>
+
+    <div class="drawer" role="group" aria-labelledby="count-label">
+      <div class="drawer__row">
+        <span class="drawer__label" id="count-label">Number of cards to pull</span>
+        <span class="drawer__value"><span id="count-display">20</span> of <span id="count-max">181</span></span>
+      </div>
+
+      <div class="chip-row" id="count-chips" role="radiogroup" aria-labelledby="count-label">
+        <button type="button" class="chip" data-count="10">10</button>
+        <button type="button" class="chip is-active" data-count="20">20</button>
+        <button type="button" class="chip" data-count="30">30</button>
+        <button type="button" class="chip" data-count="50">50</button>
+        <button type="button" class="chip" data-count="100">100</button>
+        <button type="button" class="chip" data-count="all" id="chip-all">All</button>
+      </div>
+
+      <label class="slider-wrap" for="count-slider">
+        <span class="slider-wrap__caption">Fine-tune</span>
+        <input type="range" id="count-slider" min="5" max="181" value="20" step="1">
+      </label>
+    </div>
+
+    <div class="drawer drawer--modules">
+      <div class="drawer__row">
+        <span class="drawer__label">Modules to include</span>
+        <span class="drawer__value drawer__value--muted">tap to toggle</span>
+      </div>
+      <div class="chip-row" id="module-chips" role="group" aria-label="Filter by module">
+        <button type="button" class="chip chip--module is-active" data-module="1">M1 · Needs &amp; Access</button>
+        <button type="button" class="chip chip--module is-active" data-module="2">M2 · Libraries</button>
+        <button type="button" class="chip chip--module is-active" data-module="3">M3 · Search &amp; Study</button>
+        <button type="button" class="chip chip--module is-active" data-module="4">M4 · Access Tools</button>
+        <button type="button" class="chip chip--module is-active" data-module="5">M5 · Ethics &amp; AI</button>
+        <button type="button" class="chip chip--module chip--past is-active" data-module="6">Past Questions · CAT</button>
+      </div>
+      <p class="drawer__note">Past Questions are drawn from the FUTO ILS 212 CAT paper and only ever offer two options (A/B). All other modules offer four (A–D).</p>
+    </div>
+
+    <button id="btn-start" class="stamp-btn" type="button">
+      <span class="stamp-btn__ring"></span>
+      <span class="stamp-btn__text">Begin Quiz</span>
+    </button>
+    <p id="setup-warning" class="setup-warning" hidden>Select at least one module to continue.</p>
+  </section>
+
+  <!-- ============ SCREEN 2 : QUIZ ============ -->
+  <section id="screen-quiz" class="screen screen--quiz" data-screen hidden>
+    <div class="ledger-bar">
+      <div class="ledger-bar__progress">
+        <span id="q-position">1</span> / <span id="q-total">20</span>
+      </div>
+      <div class="ledger-bar__track">
+        <div class="ledger-bar__fill" id="progress-fill"></div>
+      </div>
+      <div class="ledger-bar__score">Score <span id="running-score">0</span></div>
+    </div>
+
+    <article class="index-card" id="index-card">
+      <div class="index-card__tab">
+        <span id="q-module-label">Module 1</span>
+        <span class="index-card__dot">·</span>
+        <span id="q-id">Card 001</span>
+      </div>
+
+      <h2 class="index-card__question" id="q-text">Loading question…</h2>
+
+      <div class="options" id="options-list"></div>
+
+      <div class="index-card__feedback" id="feedback" aria-live="polite"></div>
+    </article>
+
+    <div class="quiz-controls">
+      <button id="btn-next" class="btn-primary" type="button" disabled>Next Card</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 3 : RESULTS ============ -->
+  <section id="screen-results" class="screen screen--results" data-screen hidden>
+    <div class="receipt">
+      <p class="receipt__eyebrow">Circulation Receipt</p>
+      <h2 class="receipt__title">Session Complete</h2>
+
+      <div class="receipt__score">
+        <span class="receipt__score-num" id="final-score">0</span>
+        <span class="receipt__score-den">/ <span id="final-total">0</span></span>
+      </div>
+      <p class="receipt__pct" id="final-pct">0%</p>
+      <p class="receipt__remark" id="final-remark">—</p>
+
+      <div class="receipt__divider"></div>
+
+      <h3 class="receipt__subhead">By Module</h3>
+      <div class="module-breakdown" id="module-breakdown"></div>
+
+      <div class="receipt__divider"></div>
+
+      <div class="receipt__actions">
+        <button id="btn-review" class="btn-secondary" type="button">Review Answers</button>
+        <button id="btn-restart" class="btn-primary" type="button">New Session</button>
+      </div>
+    </div>
+
+    <div class="review-list" id="review-list" hidden></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Built by <span class="site-footer__author">SamistInTech</span></p>
+</footer>
+
+<script src="questions.js"></script>
+<script src="pastquestions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
