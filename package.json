@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "A browser-based practice quiz for **ILS 212 — Information Literacy Skills**, covering all five course modules plus a Past Questions (CAT) section. Built with plain HTML, CSS, and JavaScript — no build step, no dependencies to install.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinaza-bit/ILS212.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chinaza-bit/ILS212/issues"
+  },
+  "homepage": "https://github.com/chinaza-bit/ILS212#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
