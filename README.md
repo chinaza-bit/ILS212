@@ -21,6 +21,9 @@ A self-test quiz app for FUTO's **ILS 212: Information Literacy Skills** course,
 - `questions.js` — the 200-question Practice Bank
 - `pastQuestions.js` — the 20-question Past Questions (CA Test) bank
 
+  
+
+'
 ## Running it
 
 No build tools needed. Just open `index.html` in a browser, or serve the folder with any static file server:
@@ -37,7 +40,7 @@ Then visit `http://localhost:8000`.
 2. In the repo, go to **Settings → Pages**.
 3. Under "Build and deployment", set the source to **Deploy from a branch**, pick `main` and `/ (root)`.
 4. Save — GitHub will publish the site at `https://<username>.github.io/<repo-name>/`.
-
+'
 ## Editing the question banks
 
 Each question in `questions.js` and `pastQuestions.js` follows this shape:
